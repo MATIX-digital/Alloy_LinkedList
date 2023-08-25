@@ -42,6 +42,15 @@ Problem with the potential solution: The returned set of a get-function cannot c
 
 */
 
+/*
+startElement = WF1
+LinkedList = 
+{
+WF1 -> WF2
+WF2 -> WF3
+WF3 -> WF4
+}
+*/
 
 
 
@@ -128,7 +137,7 @@ pred addToList[list: ListSignature, elements: set ListableObject]	{
 }
 
 fun getLastListElement[list: ListSignature]: one ListableObject	{
-	{ListableObject.(list.LinkedList) - (list.LinkedList).ListableObject}
+	{getListLength[list].lte[1] => {list.startElement} else {ListableObject.(list.LinkedList) - (list.LinkedList).ListableObject}}
 }
 
 fun getListElementsFromIndex[list:ListSignature, index: Int, howManyElements: Int]: set ListableObject	{
